@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'image',
+        'title'
+    ];
+
+    public static function projectRules(): array
+    {
+        return [
+            'image' => 'required|file',
+            'title' => 'required|string'
+        ];
+    }
+
+    public function getImageAttribute($value): string
+    {
+        return 'uploaded/project/'. $value;
+    }
 }

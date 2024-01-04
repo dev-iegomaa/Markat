@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\AdminAuthController;
 use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminContactController;
 use App\Http\Controllers\admin\AdminHomeController;
+use App\Http\Controllers\admin\AdminProjectController;
 use App\Http\Controllers\admin\AdminSliderController;
 use App\Http\Controllers\endUser\ContactController;
 use App\Http\Controllers\endUser\HomeController;
@@ -87,6 +88,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
 
     Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
         Route::controller(AdminCategoryController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('insert', 'insert')->name('insert');
+            Route::delete('delete', 'delete')->name('delete');
+            Route::post('edit', 'edit')->name('edit');
+            Route::put('update', 'update')->name('update');
+        });
+    });
+
+    Route::group(['prefix' => 'project', 'as' => 'project.'], function () {
+        Route::controller(AdminProjectController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('create', 'create')->name('create');
             Route::post('insert', 'insert')->name('insert');

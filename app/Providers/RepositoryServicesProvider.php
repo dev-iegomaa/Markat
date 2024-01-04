@@ -24,21 +24,6 @@ class RepositoryServicesProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            'App\Http\Interfaces\admin\AdminAboutInterface',
-            'App\Http\Repositories\admin\AdminAboutRepository'
-        );
-
-        $this->app->bind(
-            'App\Http\Interfaces\admin\AdminSliderInterface',
-            'App\Http\Repositories\admin\AdminSliderRepository'
-        );
-
-        $this->app->bind(
-            'App\Http\Interfaces\admin\AdminCategoryInterface',
-            'App\Http\Repositories\admin\AdminCategoryRepository'
-        );
-
-        $this->app->bind(
             'App\Http\Interfaces\endUser\ContactInterface',
             'App\Http\Repositories\endUser\ContactRepository'
         );
@@ -61,6 +46,26 @@ class RepositoryServicesProvider extends ServiceProvider
         $this->app->bind(
             'App\Http\Interfaces\admin\AdminHomeInterface',
             'App\Http\Repositories\admin\AdminHomeRepository'
+        );
+
+        $this->app->bind(
+            'App\Http\Interfaces\admin\AdminAboutInterface',
+            'App\Http\Repositories\admin\AdminAboutRepository'
+        );
+
+        $this->app->bind(
+            'App\Http\Interfaces\admin\AdminSliderInterface',
+            'App\Http\Repositories\admin\AdminSliderRepository'
+        );
+
+        $this->app->bind(
+            'App\Http\Interfaces\admin\AdminCategoryInterface',
+            'App\Http\Repositories\admin\AdminCategoryRepository'
+        );
+
+        $this->app->bind(
+            'App\Http\Interfaces\admin\AdminProjectInterface',
+            'App\Http\Repositories\admin\AdminProjectRepository'
         );
     }
 
