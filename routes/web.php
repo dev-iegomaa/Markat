@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminAboutController;
 use App\Http\Controllers\admin\AdminAuthController;
+use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminContactController;
 use App\Http\Controllers\admin\AdminHomeController;
 use App\Http\Controllers\admin\AdminSliderController;
@@ -75,6 +76,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
 
     Route::group(['prefix' => 'slider', 'as' => 'slider.'], function () {
         Route::controller(AdminSliderController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('insert', 'insert')->name('insert');
+            Route::delete('delete', 'delete')->name('delete');
+            Route::post('edit', 'edit')->name('edit');
+            Route::put('update', 'update')->name('update');
+        });
+    });
+
+    Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
+        Route::controller(AdminCategoryController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('create', 'create')->name('create');
             Route::post('insert', 'insert')->name('insert');

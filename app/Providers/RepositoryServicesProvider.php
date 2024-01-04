@@ -34,6 +34,11 @@ class RepositoryServicesProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            'App\Http\Interfaces\admin\AdminCategoryInterface',
+            'App\Http\Repositories\admin\AdminCategoryRepository'
+        );
+
+        $this->app->bind(
             'App\Http\Interfaces\endUser\ContactInterface',
             'App\Http\Repositories\endUser\ContactRepository'
         );
