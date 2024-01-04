@@ -133,13 +133,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
         });
     });
 
-    Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+    Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::controller(AdminUserController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('create', 'create')->name('create');
             Route::post('insert', 'insert')->name('insert');
-            Route::delete('delete', 'delete')->name('delete');
-            Route::post('edit', 'edit')->name('edit');
+            Route::get('delete/{id}', 'delete')->name('delete');
+            Route::get('edit/{id}', 'edit')->name('edit');
             Route::put('update', 'update')->name('update');
         });
     });

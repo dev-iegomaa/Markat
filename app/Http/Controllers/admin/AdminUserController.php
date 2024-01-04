@@ -4,7 +4,6 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\admin\AdminUserInterface;
-use App\Http\Requests\admin\user\CheckIdUserRequest;
 use App\Http\Requests\admin\user\CreateUserRequest;
 use App\Http\Requests\admin\user\UpdateUserRequest;
 
@@ -31,14 +30,14 @@ class AdminUserController extends Controller
         return $this->userInterface->insert($request);
     }
 
-    public function delete(CheckIdUserRequest $request)
+    public function delete($id)
     {
-        return $this->userInterface->delete($request);
+        return $this->userInterface->delete($id);
     }
 
-    public function edit(CheckIdUserRequest $request)
+    public function edit($id)
     {
-        return $this->userInterface->edit($request);
+        return $this->userInterface->edit($id);
     }
 
     public function update(UpdateUserRequest $request)

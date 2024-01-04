@@ -77,6 +77,11 @@ class RepositoryServicesProvider extends ServiceProvider
             'App\Http\Interfaces\admin\AdminSettingInterface',
             'App\Http\Repositories\admin\AdminSettingRepository'
         );
+
+        $this->app->bind(
+            'App\Http\Interfaces\admin\AdminUserInterface',
+            'App\Http\Repositories\admin\AdminUserRepository'
+        );
     }
 
     /**

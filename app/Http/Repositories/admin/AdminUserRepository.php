@@ -17,6 +17,7 @@ class AdminUserRepository implements AdminUserInterface
     public function index()
     {
         $users = $this->userModel::get();
+
         return view('admin.users.index', compact('users'));
     }
 
@@ -35,15 +36,15 @@ class AdminUserRepository implements AdminUserInterface
         return redirect(route('admin.users.index'));
     }
 
-    public function delete($request)
+    public function delete($id)
     {
-        $this->userModel::find($request->id)->delete();
+        $this->userModel::find($id)->delete();
         return redirect()->back();
     }
 
-    public function edit($request)
+    public function edit($id)
     {
-        $user = $this->userModel::find($request->id);
+        $user = $this->userModel::find($id);
         return view('admin.users.edit', compact('user'));
     }
 
