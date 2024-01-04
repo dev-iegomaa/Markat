@@ -5,19 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Setting extends Model
+class Service extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'type',
-        'value'
+        'service'
     ];
 
-    public static function settingRules(): array
+    public static function serviceRules(): array
     {
         return [
-            'type' => 'required|string',
-            'value' => 'required|string'
+            'service' => 'required|string|unique:services,service,' . request('id')
         ];
     }
 }

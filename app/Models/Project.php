@@ -16,7 +16,7 @@ class Project extends Model
     public static function projectRules(): array
     {
         return [
-            'image' => 'required|file',
+            'image' => 'required|file|mimes:png,jpg,webp,jpeg',
             'title' => 'required|string'
         ];
     }

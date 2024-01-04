@@ -2,12 +2,12 @@
 
 namespace App\Http\Interfaces\admin;
 
-interface AdminSettingInterface
+interface AdminServiceInterface
 {
     public function index();
     public function create();
     public function insert($request);
-    public function delete($request, $service);
+    public function delete($request);
     public function edit($request);
     public function update($request);
 }

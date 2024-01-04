@@ -16,7 +16,7 @@ class Category extends Model
     public static function categoryRules(): array
     {
         return [
-            'image' => 'required|file',
+            'image' => 'required|file|mimes:png,jpg,webp,jpeg',
             'title' => 'required|string'
         ];
     }

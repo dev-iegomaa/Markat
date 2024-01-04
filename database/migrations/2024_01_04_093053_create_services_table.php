@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProvidesTable extends Migration
+class CreateServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateProvidesTable extends Migration
      */
     public function up()
     {
-        Schema::create('provides', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('paragraph');
-            $table->string('image');
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->string('service')->unique();
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateProvidesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('provides');
+        Schema::dropIfExists('services');
     }
 }

@@ -17,7 +17,7 @@ class About extends Model
     {
         return [
             'paragraph' => 'required|string',
-            'image' => 'required|file'
+            'image' => 'required|file|mimes:png,jpg,webp,jpeg'
         ];
     }
 

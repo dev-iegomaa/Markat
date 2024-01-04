@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 
-class AdminSkillController extends Controller
+class AdminCategoryServiceController extends Controller
 {
     //
 }

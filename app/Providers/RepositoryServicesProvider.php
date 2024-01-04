@@ -67,6 +67,16 @@ class RepositoryServicesProvider extends ServiceProvider
             'App\Http\Interfaces\admin\AdminProjectInterface',
             'App\Http\Repositories\admin\AdminProjectRepository'
         );
+
+        $this->app->bind(
+            'App\Http\Interfaces\admin\AdminServiceInterface',
+            'App\Http\Repositories\admin\AdminServiceRepository'
+        );
+
+        $this->app->bind(
+            'App\Http\Interfaces\admin\AdminSettingInterface',
+            'App\Http\Repositories\admin\AdminSettingRepository'
+        );
     }
 
     /**

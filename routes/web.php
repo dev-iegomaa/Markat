@@ -6,6 +6,8 @@ use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminContactController;
 use App\Http\Controllers\admin\AdminHomeController;
 use App\Http\Controllers\admin\AdminProjectController;
+use App\Http\Controllers\admin\AdminServiceController;
+use App\Http\Controllers\admin\AdminSettingController;
 use App\Http\Controllers\admin\AdminSliderController;
 use App\Http\Controllers\endUser\ContactController;
 use App\Http\Controllers\endUser\HomeController;
@@ -107,5 +109,26 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
             Route::put('update', 'update')->name('update');
         });
     });
-});
 
+    Route::group(['prefix' => 'service', 'as' => 'service.'], function () {
+        Route::controller(AdminServiceController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('insert', 'insert')->name('insert');
+            Route::delete('delete', 'delete')->name('delete');
+            Route::post('edit', 'edit')->name('edit');
+            Route::put('update', 'update')->name('update');
+        });
+    });
+
+    Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
+        Route::controller(AdminSettingController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('insert', 'insert')->name('insert');
+            Route::delete('delete', 'delete')->name('delete');
+            Route::post('edit', 'edit')->name('edit');
+            Route::put('update', 'update')->name('update');
+        });
+    });
+});
