@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\AdminProjectController;
 use App\Http\Controllers\admin\AdminServiceController;
 use App\Http\Controllers\admin\AdminSettingController;
 use App\Http\Controllers\admin\AdminSliderController;
+use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\endUser\ContactController;
 use App\Http\Controllers\endUser\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -123,6 +124,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
 
     Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
         Route::controller(AdminSettingController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('insert', 'insert')->name('insert');
+            Route::delete('delete', 'delete')->name('delete');
+            Route::post('edit', 'edit')->name('edit');
+            Route::put('update', 'update')->name('update');
+        });
+    });
+
+    Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+        Route::controller(AdminUserController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('create', 'create')->name('create');
             Route::post('insert', 'insert')->name('insert');
