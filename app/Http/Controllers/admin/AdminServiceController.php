@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\admin\AdminServiceInterface;
-use App\Http\Requests\admin\service\CheckIdServiceRequest;
+use App\Http\Requests\admin\service\DeleteServiceRequest;
 use App\Http\Requests\admin\service\CreateServiceRequest;
 use App\Http\Requests\admin\service\UpdateServiceRequest;
 
@@ -31,14 +31,14 @@ class AdminServiceController extends Controller
         return $this->serviceInterface->insert($request);
     }
 
-    public function delete(CheckIdServiceRequest $request)
+    public function delete(DeleteServiceRequest $request)
     {
         return $this->serviceInterface->delete($request);
     }
 
-    public function edit(CheckIdServiceRequest $request)
+    public function edit($id)
     {
-        return $this->serviceInterface->edit($request);
+        return $this->serviceInterface->edit($id);
     }
 
     public function update(UpdateServiceRequest $request)

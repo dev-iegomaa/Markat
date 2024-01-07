@@ -4,15 +4,19 @@ namespace App\Http\Repositories\admin;
 
 use App\Http\Interfaces\admin\AdminCategoryInterface;
 use App\Http\Traits\category\CategoryTrait;
+use App\Http\Traits\handleImage\ImageTrait;
 use App\Models\Category;
+use Illuminate\Http\RedirectResponse;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminCategoryRepository implements AdminCategoryInterface
 {
-    private $category;
-    use CategoryTrait;
+    const PATH = 'category';
+    private $categoryModel;
+    use CategoryTrait, ImageTrait;
     public function __construct(Category $category)
     {
-        $this->category = $category;
+        $this->categoryModel = $category;
     }
 
     public function index()
@@ -28,36 +32,45 @@ class AdminCategoryRepository implements AdminCategoryInterface
 
     public function insert($request)
     {
-        $imageName = $this->uploadImage($request->image);
-        $this->category::create([
+        $imageName = $this->uploadImage($request->image, self::PATH);
+        $this->categoryModel::create([
             'title' => $request->title,
             'image' => $imageName
         ]);
+        Alert::toast('Category Created Successfully', 'success');
         return redirect(route('admin.category.index'));
     }
 
-    public function delete($request)
+    public function delete($request): RedirectResponse
     {
         $category = $this->findCategoryById($request->id);
         public_path(unlink($category->image));
         $category->delete();
+        Alert::toast('Category Deleted Successfully', 'success');
         return redirect()->back();
     }
 
-    public function edit($request)
+    public function edit($id)
     {
-        $category = $this->findCategoryById($request->id);
-        return view('admin.category.edit', compact('category'));
+        $category = $this->findCategoryById($id);
+        if ($category) {
+            return view('admin.category.edit', compact('category'));
+        }
+        Alert::toast('Category Not Found', 'error');
+        return redirect()->back();
     }
 
     public function update($request)
     {
         $category = $this->findCategoryById($request->id);
-        $imageName = $this->uploadImage($request->image, $category->image);
+        if ($request->image) {
+            $imageName = $this->uploadImage($request->image, self::PATH, $category->image);
+        }
         $category->update([
             'title' => $request->title,
-            'image' => $imageName
+            'image' => $imageName ?? $category->getRawOriginal('image')
         ]);
+        Alert::toast('Category Updated Successfully', 'success');
         return redirect(route('admin.category.index'));
     }
 }

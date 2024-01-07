@@ -24,9 +24,11 @@
                                 <div class="row">
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                         <h4>Slider Table</h4>
-                                        <button class="btn btn-primary">
-                                            <a href="{{route('admin.slider.create')}}" class="text-white">Create New Slider</a>
-                                        </button>
+                                        @if($sliders->count() === 0)
+                                            <button class="btn btn-primary">
+                                                <a href="{{route('admin.slider.create')}}" class="text-white">Create New Slider</a>
+                                            </button>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -59,11 +61,7 @@
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <form action="{{route('admin.slider.edit')}}" method="post">
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{$slider->id}}">
-                                                        <input type="submit" class="btn btn-warning" value="Update">
-                                                    </form>
+                                                    <a class="btn btn-warning" href="{{route('admin.slider.edit', [$slider->id])}}">Update</a>
                                                 </td>
                                             </tr>
                                         @endforeach

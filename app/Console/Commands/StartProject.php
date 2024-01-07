@@ -40,6 +40,9 @@ class StartProject extends Command
      */
     public function handle(): int
     {
+        Artisan::call('migrate:fresh');
+        $this->info('Database Was Migrated');
+
         $username = $this->ask('Enter Username');
         $email = $this->ask('Enter Email');
         $password = $this->secret('Enter Password');

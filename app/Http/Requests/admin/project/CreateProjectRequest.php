@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\admin\project;
 
-use App\Models\Project;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateProjectRequest extends FormRequest
@@ -24,6 +23,9 @@ class CreateProjectRequest extends FormRequest
      */
     public function rules(): array
     {
-        return Project::projectRules();
+        return [
+            'image' => 'required|file|mimes:png,jpg,webp,jpeg',
+            'title' => 'required|string'
+        ];
     }
 }

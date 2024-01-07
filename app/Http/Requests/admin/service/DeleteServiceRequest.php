@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\admin\project;
+namespace App\Http\Requests\admin\service;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CheckIdProjectRequest extends FormRequest
+class DeleteServiceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class CheckIdProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|integer|exists:projects,id'
+            'id' => 'required|integer|exists:services,id'
         ];
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\admin\category;
 
-use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCategoryRequest extends FormRequest
@@ -24,8 +23,10 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return array_merge(Category::categoryRules(), [
-            'id' => 'required|integer|exists:categories,id'
-        ]);
+        return [
+            'id' => 'required|integer|exists:categories,id',
+            'image' => 'file|mimes:png,jpg,webp,jpeg',
+            'title' => 'required|string'
+        ];
     }
 }

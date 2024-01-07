@@ -4,7 +4,7 @@ namespace App\Http\Requests\admin\setting;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CheckIdSettingRequest extends FormRequest
+class DeleteSettingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

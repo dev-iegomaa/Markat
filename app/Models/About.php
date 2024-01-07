@@ -13,14 +13,6 @@ class About extends Model
         'image'
     ];
 
-    public static function aboutRules(): array
-    {
-        return [
-            'paragraph' => 'required|string',
-            'image' => 'required|file|mimes:png,jpg,webp,jpeg'
-        ];
-    }
-
     public function getImageAttribute($value): string
     {
         return 'uploaded/about/' . $value;

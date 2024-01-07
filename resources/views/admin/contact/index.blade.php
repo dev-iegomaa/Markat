@@ -13,8 +13,8 @@
 @section('content')
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content">
-        <div class="container">
-            <div class="container">
+        <div class="container-fluid">
+            <div class="container-fluid">
 
                 <div class="row layout-top-spacing">
 
@@ -51,9 +51,7 @@
                                                     <td>{{$contact->address}}</td>
                                                     <td>{{$contact->message}}</td>
                                                     <td>
-                                                        <button class="btn btn-light-danger">
-                                                            <a href="{{route('admin.contact.delete', [$contact->id])}}">Delete</a>
-                                                        </button>
+                                                        <a class="btn btn-danger" href="{{route('admin.contact.delete', [$contact->id])}}">Delete</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

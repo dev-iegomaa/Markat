@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\admin\category;
 
-use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateCategoryRequest extends FormRequest
@@ -24,6 +23,9 @@ class CreateCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return Category::categoryRules();
+        return [
+            'image' => 'required|file|mimes:png,jpg,webp,jpeg',
+            'title' => 'required|string'
+        ];
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\admin\category;
+namespace App\Http\Requests\admin\project;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CheckIdCategoryRequest extends FormRequest
+class DeleteProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class CheckIdCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|integer|exists:categories,id'
+            'id' => 'required|integer|exists:projects,id'
         ];
     }
 }

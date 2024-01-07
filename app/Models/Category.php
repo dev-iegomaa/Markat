@@ -13,14 +13,6 @@ class Category extends Model
         'title'
     ];
 
-    public static function categoryRules(): array
-    {
-        return [
-            'image' => 'required|file|mimes:png,jpg,webp,jpeg',
-            'title' => 'required|string'
-        ];
-    }
-
     public function getImageAttribute($value): string
     {
         return 'uploaded/category/'. $value;

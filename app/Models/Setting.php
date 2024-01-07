@@ -9,15 +9,15 @@ class Setting extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'type',
-        'value'
+        'title',
+        'email',
+        'logo',
+        'phone',
+        'tracking_apis'
     ];
 
-    public static function settingRules(): array
+    public function getLogoAttribute($value): string
     {
-        return [
-            'type' => 'required|string',
-            'value' => 'required|string'
-        ];
+        return 'uploaded/setting/' . $value;
     }
 }

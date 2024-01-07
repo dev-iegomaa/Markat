@@ -24,7 +24,11 @@ class CreateSettingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string',
+            'email' => 'required|email',
+            'logo' => 'required|file|mimes:png,jpg,webp,jpeg',
+            'phone' => 'required|string',
+            'tracking_apis' => 'required|string'
         ];
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\admin\project;
 
-use App\Models\Project;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProjectRequest extends FormRequest
@@ -24,8 +23,10 @@ class UpdateProjectRequest extends FormRequest
      */
     public function rules(): array
     {
-        return array_merge(Project::projectRules(), [
-            'id' => 'required|integer|exists:projects,id'
-        ]);
+        return [
+            'id' => 'required|integer|exists:projects,id',
+            'image' => 'file|mimes:png,jpg,webp,jpeg',
+            'title' => 'required|string'
+        ];
     }
 }

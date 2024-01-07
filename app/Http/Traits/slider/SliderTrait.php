@@ -6,20 +6,10 @@ trait SliderTrait
 {
     private function getAllSlidersData()
     {
-        return $this->slider::get();
+        return $this->sliderModel::select('id', 'paragraph', 'image')->get();
     }
     private function findSliderById($id)
     {
-        return $this->slider::find($id);
-    }
-    private function uploadImage($file, $oldImage = null): string
-    {
-        $fileName = time() . '_slider.' . $file->extension();
-
-        if (!is_null($oldImage)) {
-            unlink(public_path($oldImage));
-        }
-        $file->move(public_path('uploaded/slider'),$fileName);
-        return $fileName;
+        return $this->sliderModel::select('id', 'paragraph', 'image')->find($id);
     }
 }

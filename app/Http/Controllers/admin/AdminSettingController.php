@@ -4,10 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\admin\AdminSettingInterface;
-use App\Http\Requests\admin\setting\CheckIdSettingRequest;
+use App\Http\Requests\admin\setting\DeleteSettingRequest;
 use App\Http\Requests\admin\setting\CreateSettingRequest;
 use App\Http\Requests\admin\setting\UpdateSettingRequest;
-use App\Http\Services\SettingDeleteImage;
 
 class AdminSettingController extends Controller
 {
@@ -32,14 +31,14 @@ class AdminSettingController extends Controller
         return $this->settingInterface->insert($request);
     }
 
-    public function delete(CheckIdSettingRequest $request, SettingDeleteImage $service)
+    public function delete(DeleteSettingRequest $request)
     {
-        return $this->settingInterface->delete($request, $service);
+        return $this->settingInterface->delete($request);
     }
 
-    public function edit(CheckIdSettingRequest $request)
+    public function edit($id)
     {
-        return $this->settingInterface->edit($request);
+        return $this->settingInterface->edit($id);
     }
 
     public function update(UpdateSettingRequest $request)

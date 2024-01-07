@@ -5,6 +5,7 @@ namespace App\Http\Repositories\endUser;
 use App\Http\Interfaces\endUser\ContactInterface;
 use App\Models\Contact;
 use Illuminate\Http\RedirectResponse;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactRepository implements ContactInterface
 {
@@ -17,6 +18,7 @@ class ContactRepository implements ContactInterface
             'email' => $request->email,
             'message' => $request->message
         ]);
+        Alert::toast('Contact Created Successfully', 'success');
         return redirect()->back();
     }
 }

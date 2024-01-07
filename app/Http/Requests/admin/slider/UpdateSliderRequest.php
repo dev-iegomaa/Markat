@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\admin\slider;
 
-use App\Models\Slider;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSliderRequest extends FormRequest
@@ -24,8 +23,10 @@ class UpdateSliderRequest extends FormRequest
      */
     public function rules(): array
     {
-        return array_merge(Slider::sliderRules(), [
-            'id' => 'required|integer|exists:sliders,id'
-        ]);
+        return [
+            'id' => 'required|integer|exists:sliders,id',
+            'image' => 'file|mimes:png,jpg,webp,jpeg',
+            'paragraph' => 'required|string'
+        ];
     }
 }

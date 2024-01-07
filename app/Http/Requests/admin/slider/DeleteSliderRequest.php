@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\admin\user;
+namespace App\Http\Requests\admin\slider;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CheckIdUserRequest extends FormRequest
+class DeleteSliderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class CheckIdUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|integer|exists:users,id'
+            'id' => 'required|integer|exists:sliders,id'
         ];
     }
 }

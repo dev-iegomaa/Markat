@@ -3,19 +3,23 @@
 namespace App\Http\Repositories\admin;
 
 use App\Http\Interfaces\admin\AdminServiceInterface;
+use App\Http\Traits\service\ServiceTrait;
 use App\Models\Service;
+use Illuminate\Http\RedirectResponse;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminServiceRepository implements AdminServiceInterface
 {
-    private $service;
+    private $serviceModel;
+    use ServiceTrait;
     public function __construct(Service $service)
     {
-        $this->service = $service;
+        $this->serviceModel = $service;
     }
 
     public function index()
     {
-        $services = $this->service::get();
+        $services = $this->getAllServices();
         return view('admin.service.index', compact('services'));
     }
 
@@ -26,29 +30,36 @@ class AdminServiceRepository implements AdminServiceInterface
 
     public function insert($request)
     {
-        $this->service::create([
+        $this->serviceModel::create([
             'service' => $request->service
         ]);
+        Alert::toast('Service Created Successfully', 'success');
         return redirect(route('admin.service.index'));
     }
 
-    public function delete($request)
+    public function delete($request): RedirectResponse
     {
-        $this->service::find($request->id)->delete();
+        $this->findServiceById($request->id)->delete();
+        Alert::toast('Service Deleted Successfully', 'success');
         return redirect()->back();
     }
 
-    public function edit($request)
+    public function edit($id)
     {
-        $service = $this->service::find($request->id);
-        return view('admin.service.edit', compact('service'));
+        $service = $this->findServiceById($id);
+        if ($service) {
+            return view('admin.service.edit', compact('service'));
+        }
+        Alert::toast('Service Not Found', 'error');
+        return redirect()->back();
     }
 
     public function update($request)
     {
-        $this->service::find($request->id)->update([
+        $this->findServiceById($request->id)->update([
             'service' => $request->service
         ]);
+        Alert::toast('Service Updated Successfully', 'success');
         return redirect(route('admin.service.index'));
     }
 }

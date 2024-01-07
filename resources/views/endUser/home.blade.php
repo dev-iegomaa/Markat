@@ -435,25 +435,25 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <fieldset>
-                                                <input type="text" name="name" value="{{old('name')}}" id="name" placeholder="Your Name" autocomplete="on" required>
+                                                <input class="@error('name') is-invalid @enderror form-control" type="text" name="name" value="{{old('name')}}" id="name" placeholder="Your Name" autocomplete="on" required>
                                             </fieldset>
                                             @error('name')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                             <fieldset>
-                                                <input type="text" name="phone" value="{{old('phone')}}" id="phone" placeholder="Your Phone" autocomplete="on">
+                                                <input class="@error('phone') is-invalid @enderror form-control" type="text" name="phone" value="{{old('phone')}}" id="phone" placeholder="Your Phone" autocomplete="on" required>
                                             </fieldset>
                                             @error('phone')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                             <fieldset>
-                                                <input type="text" name="email" value="{{old('email')}}" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email" required>
+                                                <input class="@error('email') is-invalid @enderror form-control" type="text" name="email" value="{{old('email')}}" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email" required>
                                             </fieldset>
                                             @error('email')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                             <fieldset>
-                                                <input type="text" name="address" value="{{old('address')}}" id="address" placeholder="Your Address" required>
+                                                <input class="@error('address') is-invalid @enderror form-control" type="text" name="address" value="{{old('address')}}" id="address" placeholder="Your Address" required>
                                             </fieldset>
                                             @error('address')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -461,11 +461,17 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <fieldset style="height: 100% !important;">
-                                                <textarea name="message" style="height: 88% !important; max-height: none;" type="text" class="form-control" id="message" placeholder="Message" required>{{old('message')}}</textarea>
+                                                <textarea class="@error('message') is-invalid @enderror form-control" name="message" style="height: 88% !important; max-height: none;" type="text" id="message" placeholder="Message" required>{{old('message')}}</textarea>
                                             </fieldset>
                                             @error('message')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
+                                        </div>
+                                        <div class="col-lg-12 mt-4">
+                                            <fieldset>
+                                                {!! NoCaptcha::renderJs() !!}
+                                                {!! NoCaptcha::display() !!}
+                                            </fieldset>
                                         </div>
                                         <div class="col-lg-12">
                                             <fieldset>

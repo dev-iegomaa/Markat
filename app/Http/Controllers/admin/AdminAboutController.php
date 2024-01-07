@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\admin\AdminAboutInterface;
-use App\Http\Requests\admin\about\CheckIdAboutRequest;
+use App\Http\Requests\admin\about\DeleteAboutRequest;
 use App\Http\Requests\admin\about\CreateAboutRequest;
 use App\Http\Requests\admin\about\UpdateAboutRequest;
 
@@ -31,14 +31,14 @@ class AdminAboutController extends Controller
         return $this->aboutInterface->insert($request);
     }
 
-    public function delete(CheckIdAboutRequest $request)
+    public function delete(DeleteAboutRequest $request)
     {
         return $this->aboutInterface->delete($request);
     }
 
-    public function edit(CheckIdAboutRequest $request)
+    public function edit($id)
     {
-        return $this->aboutInterface->edit($request);
+        return $this->aboutInterface->edit($id);
     }
 
     public function update(UpdateAboutRequest $request)

@@ -24,7 +24,12 @@ class UpdateSettingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|integer|exists:settings,id',
+            'title' => 'string',
+            'email' => 'email',
+            'logo' => 'file|mimes:png,jpg,webp,jpeg',
+            'phone' => 'string',
+            'tracking_apis' => 'string'
         ];
     }
 }

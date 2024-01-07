@@ -59,11 +59,7 @@
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <form action="{{route('admin.project.edit')}}" method="post">
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{$project->id}}">
-                                                        <input type="submit" class="btn btn-warning" value="Update">
-                                                    </form>
+                                                    <a class="btn btn-warning" href="{{route('admin.project.edit', [$project->id])}}">Update</a>
                                                 </td>
                                             </tr>
                                         @endforeach

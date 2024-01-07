@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\admin\about;
+namespace App\Http\Requests\admin\user;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CheckIdAboutRequest extends FormRequest
+class DeleteUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class CheckIdAboutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|integer|exists:abouts,id'
+            'id' => 'required|integer|exists:users,id'
         ];
     }
 }

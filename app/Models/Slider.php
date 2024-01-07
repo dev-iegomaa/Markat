@@ -13,14 +13,6 @@ class Slider extends Model
         'image'
     ];
 
-    public static function sliderRules(): array
-    {
-        return [
-            'image' => 'required|file',
-            'paragraph' => 'required|string'
-        ];
-    }
-
     public function getImageAttribute($value): string
     {
         return 'uploaded/slider/' . $value;

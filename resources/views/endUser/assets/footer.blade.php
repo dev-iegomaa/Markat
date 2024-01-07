@@ -16,6 +16,7 @@
 <script src="{{asset('endUserAssets/assets/js/animation.js')}}"></script>
 <script src="{{asset('endUserAssets/assets/js/imagesloaded.js')}}"></script>
 <script src="{{asset('endUserAssets/assets/js/custom.js')}}"></script>
+@include('sweetalert::alert')
 @stack('js')
 </body>
 </html>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\admin\AdminProjectInterface;
-use App\Http\Requests\admin\project\CheckIdProjectRequest;
+use App\Http\Requests\admin\project\DeleteProjectRequest;
 use App\Http\Requests\admin\project\CreateProjectRequest;
 use App\Http\Requests\admin\project\UpdateProjectRequest;
 
@@ -31,14 +31,14 @@ class AdminProjectController extends Controller
         return $this->projectInterface->insert($request);
     }
 
-    public function delete(CheckIdProjectRequest $request)
+    public function delete(DeleteProjectRequest $request)
     {
         return $this->projectInterface->delete($request);
     }
 
-    public function edit(CheckIdProjectRequest $request)
+    public function edit($id)
     {
-        return $this->projectInterface->edit($request);
+        return $this->projectInterface->edit($id);
     }
 
     public function update(UpdateProjectRequest $request)

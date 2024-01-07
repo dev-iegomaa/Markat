@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\admin\about;
 
-use App\Models\About;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateAboutRequest extends FormRequest
@@ -24,6 +23,9 @@ class CreateAboutRequest extends FormRequest
      */
     public function rules(): array
     {
-        return About::aboutRules();
+        return [
+            'paragraph' => 'required|string',
+            'image' => 'required|file|mimes:png,jpg,webp,jpeg'
+        ];
     }
 }

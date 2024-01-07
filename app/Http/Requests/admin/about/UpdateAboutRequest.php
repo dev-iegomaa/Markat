@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\admin\about;
 
-use App\Models\About;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateAboutRequest extends FormRequest
@@ -24,8 +23,10 @@ class UpdateAboutRequest extends FormRequest
      */
     public function rules(): array
     {
-        return array_merge(About::aboutRules(), [
+        return [
+            'paragraph' => 'required|string',
+            'image' => 'file|mimes:png,jpg,webp,jpeg',
             'id' => 'required|integer|exists:abouts,id'
-        ]);
+        ];
     }
 }

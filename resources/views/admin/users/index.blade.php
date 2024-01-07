@@ -24,6 +24,9 @@
                                 <div class="row">
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                         <h4>User Table</h4>
+                                        <button class="btn btn-primary">
+                                            <a href="{{route('admin.users.create')}}" class="text-white">Create New User</a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -46,16 +49,15 @@
                                                     <td>{{$user->name}}</td>
                                                     <td>{{$user->email}}</td>
                                                     <td>
-                                                        @if(auth()->user()->email != $user->email)
-                                                            <button class="btn btn-danger">
-                                                                <a class="text-white" href="{{route('admin.users.delete', [$user->id])}}">Delete</a>
-                                                            </button>
-                                                        @endif
+                                                        <form action="{{route('admin.users.delete')}}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <input type="hidden" name="id" value="{{$user->id}}">
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
                                                     </td>
                                                     <td>
-                                                        <button class="btn btn-warning">
-                                                            <a class="text-white" href="{{route('admin.users.edit', [$user->id])}}">Update</a>
-                                                        </button>
+                                                        <a class="btn btn-warning" href="{{route('admin.users.edit', [$user->id])}}">Update</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

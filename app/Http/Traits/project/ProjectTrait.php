@@ -7,20 +7,10 @@ trait ProjectTrait
 
     private function getAllProjectsData()
     {
-        return $this->project::get();
+        return $this->projectModel::select('id', 'image', 'title')->get();
     }
     private function findProjectById($id)
     {
-        return $this->project::find($id);
-    }
-    private function uploadImage($file, $oldImage = null): string
-    {
-        $fileName = time() . '_project.' . $file->extension();
-
-        if (!is_null($oldImage)) {
-            unlink(public_path($oldImage));
-        }
-        $file->move(public_path('uploaded/project'),$fileName);
-        return $fileName;
+        return $this->projectModel::select('id', 'image', 'title')->find($id);
     }
 }

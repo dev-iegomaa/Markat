@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\admin\slider;
 
-use App\Models\Slider;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateSliderRequest extends FormRequest
@@ -24,6 +23,9 @@ class CreateSliderRequest extends FormRequest
      */
     public function rules(): array
     {
-        return Slider::sliderRules();
+        return [
+            'image' => 'required|file|mimes:png,jpg,webp,jpeg',
+            'paragraph' => 'required|string'
+        ];
     }
 }

@@ -4,15 +4,19 @@ namespace App\Http\Repositories\admin;
 
 use App\Http\Interfaces\admin\AdminAboutInterface;
 use App\Http\Traits\about\AboutTrait;
+use App\Http\Traits\handleImage\ImageTrait;
 use App\Models\About;
+use Illuminate\Http\RedirectResponse;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminAboutRepository implements AdminAboutInterface
 {
-    private $about;
-    use AboutTrait;
+    const PATH = 'about';
+    private $aboutModel;
+    use AboutTrait, ImageTrait;
     public function __construct(About $about)
     {
-        $this->about = $about;
+        $this->aboutModel = $about;
     }
 
     public function index()
@@ -28,36 +32,45 @@ class AdminAboutRepository implements AdminAboutInterface
 
     public function insert($request)
     {
-        $imageName = $this->uploadImage($request->image);
-        $this->about::create([
+        $imageName = $this->uploadImage($request->image, self::PATH);
+        $this->aboutModel::create([
             'paragraph' => $request->paragraph,
             'image' => $imageName
         ]);
+        Alert::toast('About Created Successfully', 'success');
         return redirect(route('admin.about.index'));
     }
 
-    public function delete($request)
+    public function delete($request): RedirectResponse
     {
         $about = $this->findAboutById($request->id);
         public_path(unlink($about->image));
         $about->delete();
+        Alert::toast('About Deleted Successfully', 'success');
         return redirect()->back();
     }
 
-    public function edit($request)
+    public function edit($id)
     {
-        $about = $this->findAboutById($request->id);
-        return view('admin.about.edit', compact('about'));
+        $about = $this->findAboutById($id);
+        if ($about) {
+            return view('admin.about.edit', compact('about'));
+        }
+        Alert::toast('About Not Found', 'error');
+        return redirect()->back();
     }
 
     public function update($request)
     {
         $about = $this->findAboutById($request->id);
-        $imageName = $this->uploadImage($request->image, $about->image);
+        if ($request->image) {
+            $imageName = $this->uploadImage($request->image, self::PATH, $about->image);
+        }
         $about->update([
             'paragraph' => $request->paragraph,
-            'image' => $imageName
+            'image' => $imageName ?? $about->getRawOriginal('image')
         ]);
+        Alert::toast('About Updated Successfully', 'success');
         return redirect(route('admin.about.index'));
     }
 }

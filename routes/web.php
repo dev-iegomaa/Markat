@@ -41,7 +41,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
         Route::controller(AdminAuthController::class)->group(function () {
-            Route::get('/', 'index')->name('index');
+            Route::get('/', 'index')->name('index')->middleware('LoginRedirect');
             Route::post('login', 'login')->name('login');
         });
     });
@@ -58,6 +58,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
 
     Route::controller(AdminHomeController::class)->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('edit', 'edit')->name('edit');
+        Route::put('update', 'update')->name('update');
     });
 
     Route::group(['prefix' => 'contact', 'as' => 'contact.'], function () {
@@ -70,10 +72,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::group(['prefix' => 'about', 'as' => 'about.'], function () {
         Route::controller(AdminAboutController::class)->group(function () {
             Route::get('/', 'index')->name('index');
-            Route::get('create', 'create')->name('create');
+            Route::get('create', 'create')->name('create')->middleware('CreateAbout');
             Route::post('insert', 'insert')->name('insert');
             Route::delete('delete', 'delete')->name('delete');
-            Route::post('edit', 'edit')->name('edit');
+            Route::get('edit/{id}', 'edit')->name('edit');
             Route::put('update', 'update')->name('update');
         });
     });
@@ -81,10 +83,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::group(['prefix' => 'slider', 'as' => 'slider.'], function () {
         Route::controller(AdminSliderController::class)->group(function () {
             Route::get('/', 'index')->name('index');
-            Route::get('create', 'create')->name('create');
+            Route::get('create', 'create')->name('create')->middleware('CreateSlider');
             Route::post('insert', 'insert')->name('insert');
             Route::delete('delete', 'delete')->name('delete');
-            Route::post('edit', 'edit')->name('edit');
+            Route::get('edit/{id}', 'edit')->name('edit');
             Route::put('update', 'update')->name('update');
         });
     });
@@ -95,7 +97,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
             Route::get('create', 'create')->name('create');
             Route::post('insert', 'insert')->name('insert');
             Route::delete('delete', 'delete')->name('delete');
-            Route::post('edit', 'edit')->name('edit');
+            Route::get('edit/{id}', 'edit')->name('edit');
             Route::put('update', 'update')->name('update');
         });
     });
@@ -106,7 +108,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
             Route::get('create', 'create')->name('create');
             Route::post('insert', 'insert')->name('insert');
             Route::delete('delete', 'delete')->name('delete');
-            Route::post('edit', 'edit')->name('edit');
+            Route::get('edit/{id}', 'edit')->name('edit');
             Route::put('update', 'update')->name('update');
         });
     });
@@ -117,7 +119,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
             Route::get('create', 'create')->name('create');
             Route::post('insert', 'insert')->name('insert');
             Route::delete('delete', 'delete')->name('delete');
-            Route::post('edit', 'edit')->name('edit');
+            Route::get('edit/{id}', 'edit')->name('edit');
             Route::put('update', 'update')->name('update');
         });
     });
@@ -125,10 +127,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
         Route::controller(AdminSettingController::class)->group(function () {
             Route::get('/', 'index')->name('index');
-            Route::get('create', 'create')->name('create');
+            Route::get('create', 'create')->name('create')->middleware('CreateSetting');
             Route::post('insert', 'insert')->name('insert');
             Route::delete('delete', 'delete')->name('delete');
-            Route::post('edit', 'edit')->name('edit');
+            Route::get('edit/{id}', 'edit')->name('edit');
             Route::put('update', 'update')->name('update');
         });
     });
@@ -138,7 +140,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
             Route::get('/', 'index')->name('index');
             Route::get('create', 'create')->name('create');
             Route::post('insert', 'insert')->name('insert');
-            Route::get('delete/{id}', 'delete')->name('delete');
+            Route::delete('delete', 'delete')->name('delete');
             Route::get('edit/{id}', 'edit')->name('edit');
             Route::put('update', 'update')->name('update');
         });

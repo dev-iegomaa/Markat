@@ -28,7 +28,8 @@ class ContactRequest extends FormRequest
             'address' => 'required|string',
             'phone' => 'required|string|unique:contacts,phone',
             'email' => 'required|email|unique:contacts,email',
-            'message' => 'required|string'
+            'message' => 'required|string',
+            'g-recaptcha-response' => 'required|captcha'
         ];
     }
 }

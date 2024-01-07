@@ -13,14 +13,6 @@ class Project extends Model
         'title'
     ];
 
-    public static function projectRules(): array
-    {
-        return [
-            'image' => 'required|file|mimes:png,jpg,webp,jpeg',
-            'title' => 'required|string'
-        ];
-    }
-
     public function getImageAttribute($value): string
     {
         return 'uploaded/project/'. $value;

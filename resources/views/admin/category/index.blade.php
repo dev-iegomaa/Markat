@@ -59,11 +59,7 @@
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <form action="{{route('admin.category.edit')}}" method="post">
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{$category->id}}">
-                                                        <input type="submit" class="btn btn-warning" value="Update">
-                                                    </form>
+                                                    <a class="btn btn-warning" href="{{route('admin.category.edit', [$category->id])}}">Update</a>
                                                 </td>
                                             </tr>
                                         @endforeach

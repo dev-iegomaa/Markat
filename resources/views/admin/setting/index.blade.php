@@ -13,8 +13,8 @@
 @section('content')
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content">
-        <div class="container">
-            <div class="container">
+        <div class="container-fluid">
+            <div class="container-fluid">
 
                 <div class="row layout-top-spacing">
 
@@ -24,9 +24,11 @@
                                 <div class="row">
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                         <h4>Setting Table</h4>
-                                        <button class="btn btn-primary">
-                                            <a href="{{route('admin.setting.create')}}" class="text-white">Create New Slider</a>
-                                        </button>
+                                        @if($settings->count() === 0)
+                                            <button class="btn btn-primary">
+                                                <a href="{{route('admin.setting.create')}}" class="text-white">Create New Setting</a>
+                                            </button>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -36,8 +38,11 @@
                                         <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Type</th>
-                                            <th>Value</th>
+                                            <th>Title</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Logo</th>
+                                            <th>Tracking Apis</th>
                                             <th>Delete</th>
                                             <th>Update</th>
                                         </tr>
@@ -46,14 +51,13 @@
                                         @foreach($settings as $key => $setting)
                                             <tr>
                                                 <td>{{++$key}}</td>
-                                                <td>{{$setting->type}}</td>
+                                                <td>{{$setting->title}}</td>
+                                                <td>{{$setting->email}}</td>
+                                                <td>{{$setting->phone}}</td>
                                                 <td>
-                                                    @if(strstr($setting->value, 'uploaded/setting'))
-                                                        <img width="100" src="{{asset($setting->value)}}" alt="setting image">
-                                                    @else
-                                                        {{$setting->value}}
-                                                    @endif
+                                                    <img width="100" src="{{asset($setting->logo)}}" alt="Logo Website">
                                                 </td>
+                                                <td>{{$setting->tracking_apis}}</td>
                                                 <td>
                                                     <form action="{{route('admin.setting.delete')}}" method="post">
                                                         @csrf
@@ -63,11 +67,7 @@
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <form action="{{route('admin.setting.edit')}}" method="post">
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{$setting->id}}">
-                                                        <input type="submit" class="btn btn-warning" value="Update">
-                                                    </form>
+                                                    <a class="btn btn-warning" href="{{route('admin.setting.edit', [$setting->id])}}">Update</a>
                                                 </td>
                                             </tr>
                                         @endforeach

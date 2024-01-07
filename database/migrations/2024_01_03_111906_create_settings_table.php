@@ -15,8 +15,11 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['email', 'phone', 'logo', 'title'])->unique();
-            $table->string('value');
+            $table->string('title');
+            $table->string('email')->unique();
+            $table->string('logo');
+            $table->string('phone');
+            $table->string('tracking_apis');
             $table->timestamps();
         });
     }
