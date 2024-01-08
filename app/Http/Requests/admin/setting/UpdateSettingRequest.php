@@ -25,11 +25,11 @@ class UpdateSettingRequest extends FormRequest
     {
         return [
             'id' => 'required|integer|exists:settings,id',
-            'title' => 'string',
-            'email' => 'email',
+            'title' => 'required|string',
+            'email' => 'required|email',
             'logo' => 'file|mimes:png,jpg,webp,jpeg',
-            'phone' => 'string',
-            'tracking_apis' => 'string'
+            'phone' => 'required|string',
+            'tracking_apis' => 'required|string'
         ];
     }
 }

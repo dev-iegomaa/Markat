@@ -73,11 +73,11 @@ class AdminSettingRepository implements AdminSettingInterface
         }
 
         $setting->update([
-            'title' => $setting->title ?? $request->title,
-            'email' => $setting->email ?? $request->email,
+            'title' =>  $request->title,
+            'email' => $request->email,
             'logo' => $logo ?? $setting->getRawOriginal('logo'),
-            'phone' => $setting->phone ?? $request->phone,
-            'tracking_apis' => $setting->tracking_apis ?? $request->tracking_apis
+            'phone' => $request->phone,
+            'tracking_apis' => $request->tracking_apis
         ]);
         Alert::toast('Setting Updated Successfully', 'success');
         return redirect(route('admin.setting.index'));
