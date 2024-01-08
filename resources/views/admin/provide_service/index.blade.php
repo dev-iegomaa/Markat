@@ -36,6 +36,7 @@
                                         <thead>
                                         <tr>
                                             <th>Id</th>
+                                            <th>Category</th>
                                             <th>Provide</th>
                                             <th>Service</th>
                                             <th>Delete</th>
@@ -43,25 +44,35 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($provideServices as $key => $provideService)
-                                            <tr>
-                                                <td>{{++$key}}</td>
-                                                <td>{{$provideService->provides->title}}</td>
-                                                <td>{{$provideService->services->service}}</td>
-                                                <td>{{$provide->category->title}}</td>
-                                                <td>
-                                                    <form action="{{route('admin.provide.service.delete')}}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <input type="hidden" name="id" value="{{$provideService->id}}">
-                                                        <input type="submit" class="btn btn-danger" value="Delete">
-                                                    </form>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning" href="{{route('admin.provide.service.edit', [$provideService->id])}}">Update</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+
+                                            @foreach ($provideServices as $key => $provideService)
+
+                                                <tr>
+                                                    <td>{{++$key}}</td>
+                                                    @foreach ($provideService->provides as $provide)
+                                                        <td>{{$provide->category->title}}</td>
+                                                        <td>{{$provide->title}}</td>
+                                                    @endforeach
+
+                                                    @foreach ($provideService->services as $service)
+                                                        <td>{{$service->service}}</td>
+                                                    @endforeach
+
+                                                    <td>
+                                                        <form action="{{route('admin.provide.service.delete')}}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <input type="hidden" name="id" value="{{$provideService->id}}">
+                                                            <input type="submit" class="btn btn-danger" value="Delete">
+                                                        </form>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-warning" href="{{route('admin.provide.service.edit', [$provideService->id])}}">Update</a>
+                                                    </td>
+                                                </tr>
+
+                                            @endforeach
+
                                         </tbody>
                                     </table>
                                 </div>

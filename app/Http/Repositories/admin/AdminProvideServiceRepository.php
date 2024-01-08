@@ -25,7 +25,6 @@ class AdminProvideServiceRepository implements AdminProvideServiceInterface
     public function index()
     {
         $provideServices = ProvideService::with(['provides', 'services'])->get();
-        dd($provideServices[0]->provides);
         return view('admin.provide_service.index', compact('provideServices'));
     }
 
@@ -70,13 +69,10 @@ class AdminProvideServiceRepository implements AdminProvideServiceInterface
 
     public function update($request)
     {
-        foreach ($request->services_id as $service_id)
-        {
-            ProvideService::find($request->id)->update([
-                'provide_id' => $request->provide_id,
-                'service_id' => $service_id
-            ]);
-        }
+        ProvideService::find($request->id)->update([
+            'provide_id' => $request->provide_id,
+            'service_id' => $request->service_id
+        ]);
         Alert::toast('Provide Service Updated Successfully', 'success');
         return redirect(route('admin.provide.service.index'));
     }

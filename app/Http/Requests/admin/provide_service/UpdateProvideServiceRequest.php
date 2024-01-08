@@ -24,8 +24,10 @@ class UpdateProvideServiceRequest extends FormRequest
      */
     public function rules(): array
     {
-        return array_merge(ProvideService::provideServiceRule(), [
+        return [
             'id' => 'required|integer|exists:provide_services,id',
-        ]);
+            'provide_id' => 'required|integer|exists:provides,id',
+            'services_id' => 'required|string|exists:services,service'
+        ];
     }
 }

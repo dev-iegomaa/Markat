@@ -24,7 +24,7 @@ class ProvideService extends Model
 
     public function provides(): BelongsToMany
     {
-        return $this->belongsToMany(Provide::class, 'provide_services', 'id', 'provide_id');
+        return $this->belongsToMany(Provide::class, 'provide_services', 'id', 'provide_id')->with('category');
     }
 
     public function services(): BelongsToMany

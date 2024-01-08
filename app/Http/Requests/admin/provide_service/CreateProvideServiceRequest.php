@@ -24,6 +24,9 @@ class CreateProvideServiceRequest extends FormRequest
      */
     public function rules(): array
     {
-        return ProvideService::provideServiceRule();
+        return [
+            'provide_id' => 'required|integer|exists:provides,id',
+            'services_id' => 'required|array'
+        ];
     }
 }
