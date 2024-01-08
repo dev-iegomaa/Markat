@@ -37,7 +37,7 @@
                                 @method('PUT')
                                 <input type="hidden" name="id" value="{{$slider->id}}">
                                 @include('admin.slider._form')
-                                <input type="submit" class="btn btn-primary" value="Send">
+                                <input type="submit" class="btn btn-primary" value="Update">
                             </form>
                         </div>
                     </div>

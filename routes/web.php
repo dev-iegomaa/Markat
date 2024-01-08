@@ -6,8 +6,11 @@ use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminContactController;
 use App\Http\Controllers\admin\AdminHomeController;
 use App\Http\Controllers\admin\AdminProjectController;
+use App\Http\Controllers\admin\AdminProvideController;
+use App\Http\Controllers\admin\AdminProvideServiceController;
 use App\Http\Controllers\admin\AdminServiceController;
 use App\Http\Controllers\admin\AdminSettingController;
+use App\Http\Controllers\admin\AdminSkillController;
 use App\Http\Controllers\admin\AdminSliderController;
 use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\endUser\ContactController;
@@ -80,6 +83,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
         });
     });
 
+    Route::group(['prefix' => 'skill', 'as' => 'skill.'], function () {
+        Route::controller(AdminSkillController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('insert', 'insert')->name('insert');
+            Route::delete('delete', 'delete')->name('delete');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::put('update', 'update')->name('update');
+        });
+    });
+
     Route::group(['prefix' => 'slider', 'as' => 'slider.'], function () {
         Route::controller(AdminSliderController::class)->group(function () {
             Route::get('/', 'index')->name('index');
@@ -102,8 +116,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
         });
     });
 
-    Route::group(['prefix' => 'project', 'as' => 'project.'], function () {
-        Route::controller(AdminProjectController::class)->group(function () {
+    Route::group(['prefix' => 'provide', 'as' => 'provide.'], function () {
+        Route::controller(AdminProvideController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('create', 'create')->name('create');
             Route::post('insert', 'insert')->name('insert');
@@ -115,6 +129,28 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
 
     Route::group(['prefix' => 'service', 'as' => 'service.'], function () {
         Route::controller(AdminServiceController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('insert', 'insert')->name('insert');
+            Route::delete('delete', 'delete')->name('delete');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::put('update', 'update')->name('update');
+        });
+    });
+
+    Route::group(['prefix' => 'provide-service', 'as' => 'provide.service.'], function () {
+        Route::controller(AdminProvideServiceController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('insert', 'insert')->name('insert');
+            Route::delete('delete', 'delete')->name('delete');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::put('update', 'update')->name('update');
+        });
+    });
+
+    Route::group(['prefix' => 'project', 'as' => 'project.'], function () {
+        Route::controller(AdminProjectController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('create', 'create')->name('create');
             Route::post('insert', 'insert')->name('insert');

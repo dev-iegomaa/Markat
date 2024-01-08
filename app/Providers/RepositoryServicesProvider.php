@@ -28,8 +28,6 @@ class RepositoryServicesProvider extends ServiceProvider
             'App\Http\Repositories\endUser\ContactRepository'
         );
 
-
-
         /**
          *****************************************
          *************** Admin Bind **************
@@ -39,10 +37,12 @@ class RepositoryServicesProvider extends ServiceProvider
             'App\Http\Interfaces\admin\AdminAuthInterface',
             'App\Http\Repositories\admin\AdminAuthRepository'
         );
+
         $this->app->bind(
             'App\Http\Interfaces\admin\AdminContactInterface',
             'App\Http\Repositories\admin\AdminContactRepository'
         );
+
         $this->app->bind(
             'App\Http\Interfaces\admin\AdminHomeInterface',
             'App\Http\Repositories\admin\AdminHomeRepository'
@@ -51,6 +51,11 @@ class RepositoryServicesProvider extends ServiceProvider
         $this->app->bind(
             'App\Http\Interfaces\admin\AdminAboutInterface',
             'App\Http\Repositories\admin\AdminAboutRepository'
+        );
+
+        $this->app->bind(
+            'App\Http\Interfaces\admin\AdminSkillInterface',
+            'App\Http\Repositories\admin\AdminSkillRepository'
         );
 
         $this->app->bind(
@@ -64,13 +69,23 @@ class RepositoryServicesProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            'App\Http\Interfaces\admin\AdminProjectInterface',
-            'App\Http\Repositories\admin\AdminProjectRepository'
+            'App\Http\Interfaces\admin\AdminProvideInterface',
+            'App\Http\Repositories\admin\AdminProvideRepository'
         );
 
         $this->app->bind(
             'App\Http\Interfaces\admin\AdminServiceInterface',
             'App\Http\Repositories\admin\AdminServiceRepository'
+        );
+
+        $this->app->bind(
+            'App\Http\Interfaces\admin\AdminProvideServiceInterface',
+            'App\Http\Repositories\admin\AdminProvideServiceRepository'
+        );
+
+        $this->app->bind(
+            'App\Http\Interfaces\admin\AdminProjectInterface',
+            'App\Http\Repositories\admin\AdminProjectRepository'
         );
 
         $this->app->bind(

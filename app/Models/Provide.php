@@ -13,7 +13,6 @@ class Provide extends Model
         'title',
         'paragraph',
         'image',
-        'services',
         'category_id'
     ];
 
@@ -22,14 +21,9 @@ class Provide extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public static function provideRules(): array
+    public function getImageAttribute($value): string
     {
-        return [
-            'title' => 'required|string',
-            'paragraph' => 'required|string',
-            'image' => 'required|file',
-            'services' => 'required|array',
-            'category_id' => 'required|string'
-        ];
+        return 'uploaded/provide/' . $value;
     }
+
 }

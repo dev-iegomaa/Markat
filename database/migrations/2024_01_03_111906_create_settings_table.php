@@ -19,7 +19,7 @@ class CreateSettingsTable extends Migration
             $table->string('email')->unique();
             $table->string('logo');
             $table->string('phone');
-            $table->string('tracking_apis');
+            $table->text('tracking_apis');
             $table->timestamps();
         });
     }

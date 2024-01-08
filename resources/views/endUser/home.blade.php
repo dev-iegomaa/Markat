@@ -16,7 +16,7 @@
                                     <div class="col-lg-12">
                                         <h6>Digital Media Agency</h6>
                                         <h2>We Boost Your Website Traffic</h2>
-                                        <p>This template is brought to you by TemplateMo website. Feel free to use this for a commercial purpose. You are not allowed to redistribute the template ZIP file on any other template website. Thank you.</p>
+                                        <p>{{$slider->paragraph}}</p>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="border-first-button"><a href="#contact">Contact Us</a></div>
@@ -52,7 +52,7 @@
                                     <h4>Who is DigiMedia <em>Agency</em></h4>
                                     <div class="line-dec"></div>
                                 </div>
-                                <p>We hope this DigiMedia template is useful for your work. You can use this template for any purpose. You may <a rel="nofollow" href="http://paypal.me/templatemo" target="_blank">contribute a little amount</a> via PayPal to <a href="https://templatemo.com/contact" target="_blank">support TemplateMo</a> in creating new templates regularly.</p>
+                                <p>{{$about->paragraph}}</p>
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4">
                                         <div class="skill-item first-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
@@ -413,7 +413,7 @@
                                             <div class="info-post">
                                                 <div class="icon">
                                                     <img src="{{asset('endUserAssets/assets/images/phone-icon.png')}}" alt="">
-                                                    <a href="tel:0100200340">010-020-0340</a>
+                                                    <a href="tel:0100200340">{{$setting->phone}}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -421,7 +421,7 @@
                                             <div class="info-post">
                                                 <div class="icon">
                                                     <img src="{{asset('endUserAssets/assets/images/email-icon.png')}}" alt="">
-                                                    <a href="mailto:our@email.com">our@email.com</a>
+                                                    <a href="mailto:our@email.com">{{$setting->email}}</a>
                                                 </div>
                                             </div>
                                         </div>

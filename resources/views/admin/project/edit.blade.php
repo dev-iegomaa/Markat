@@ -37,7 +37,7 @@
                                 @method('PUT')
                                 <input type="hidden" name="id" value="{{$project->id}}">
                                 @include('admin.project._form')
-                                <input type="submit" class="btn btn-primary" value="Send">
+                                <input type="submit" class="btn btn-primary" value="Update">
                             </form>
                         </div>
                     </div>

@@ -8,6 +8,7 @@ trait SliderTrait
     {
         return $this->sliderModel::select('id', 'paragraph', 'image')->get();
     }
+
     private function findSliderById($id)
     {
         return $this->sliderModel::select('id', 'paragraph', 'image')->find($id);

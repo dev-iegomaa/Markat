@@ -45,8 +45,8 @@
         <div class="row">
             <div class="col-lg-8 col-sm-8 col-7">
                 <ul class="info">
-                    <li><a href="mailto:digimedia@company.com"><i class="fa fa-envelope"></i>digimedia@company.com</a></li>
-                    <li><a href="tel:0100200340"><i class="fa fa-phone"></i>010-020-0340</a></li>
+                    <li><a href="mailto:digimedia@company.com"><i class="fa fa-envelope"></i>{{$setting->email}}</a></li>
+                    <li><a href="tel:0100200340"><i class="fa fa-phone"></i>{{$setting->phone}}</a></li>
                 </ul>
             </div>
             <div class="col-lg-4 col-sm-4 col-5">
